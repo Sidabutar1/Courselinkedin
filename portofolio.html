@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Course Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-light: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-muted: #e2e8f0;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --text-on-brand: #ffffff;
+    --brand-primary: #38bdf8;
+    --brand-hover: #0ea5e9;
+    --success: #22c55e;
+    --success-glow: #4ade80;
+    --shadow-color: rgba(100, 116, 139, 0.12);
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-light);
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.6;
+}
+header {
+    background: var(--bg-card);
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--bg-muted);
+}
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+.card {
+    background: var(--bg-card);
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    border: 1px solid var(--bg-muted);
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #f1f5f9;
+    color: var(--text-dark);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s, transform 0.2s, color 0.3s;
+}
+button:hover {
+    background: var(--brand-hover);
+    color: var(--text-on-brand);
+    transform: translateY(-2px);
+}
+.btn-back {
+    background: transparent;
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    transition: transform 0.2s ease, background 0.2s ease;
+    box-shadow: none; border: none; padding-left: 0;
+}
+.btn-back:hover {
+    background: transparent;
+    color: var(--text-dark);
+    transform: translateX(-5px);
+}
+.btn-cert {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background: var(--brand-primary);
+    color: var(--text-on-brand);
+    font-weight: 600;
+    margin-top: 10px;
+    transition: background 0.3s, transform 0.2s;
+}
+.btn-cert:hover {
+    background: var(--brand-hover);
+    transform: translateY(-2px);
+}
+.progress {
+    background: var(--bg-muted);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+.progress-bar {
+    height: 20px;
+    background: var(--success);
+    width: 0%;
+    text-align: center;
+    font-size: 12px;
+    transition: width 0.5s ease-out;
+}
+.hidden {
+    display: none;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+ul li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--bg-muted);
+}
+ul li:last-child {
+    border-bottom: none;
+}
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 5px var(--success); }
+    50% { box-shadow: 0 0 20px var(--success), 0 0 30px var(--success-glow); background: var(--success-glow); }
+    100% { box-shadow: 0 0 5px var(--success); }
+}
+.progress-bar.completed {
+    animation: pulseGlow 1.5s infinite;
+    background: var(--success);
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<header id="portfolio-header">
+📘 HTML Course Tracker
+</header>
+
+<div class="container">
+
+<button class="btn-back" onclick="window.location.href='index.html'">⬅️ Kembali ke Index</button>
+
+<div class="card">
+<h3>Deskripsi</h3>
+<p id="desc" class="hidden" style="margin-top: 10px; color: var(--text-muted);">HTML adalah dasar pengembangan website. Fokus pada struktur dan semantic markup.</p>
+<button onclick="toggle('desc', this)">Lihat</button>
+</div>
+
+<div class="card">
+<h3>Materi</h3>
+<ul id="materi-list">
+    <!-- List materi akan dimuat dinamis di sini -->
+</ul>
+</div>
+
+<div class="card">
+<h3>Progress</h3>
+<div class="progress">
+<div id="bar" class="progress-bar">0%</div>
+</div>
+</div>
+
+<div class="card">
+<h3>Sertifikasi</h3>
+<p style="color: var(--text-muted);">Lihat sertifikat penyelesaian kursus untuk memverifikasi pencapaian.</p>
+<a href="https://www.linkedin.com/learning/certificates/4c48f10ffa3861acb789cccb549c7c9f561c927555f9552de13ded594aba39cf?trk=share_certificate/" target="_blank" rel="noopener noreferrer" class="btn-cert">🏆 Lihat Sertifikat</a>
+</div>
+
+</div>
+
+<script>
+function toggle(id, button) {
+    const el = document.getElementById(id);
+    const isHidden = el.classList.toggle('hidden');
+    button.textContent = isHidden ? 'Lihat' : 'Sembunyikan';
+}
+
+function updateProgress() {
+    const checks = document.querySelectorAll('input[type="checkbox"]');
+    const total = checks.length;
+    let checked = 0;
+    let stateArray = [];
+
+    checks.forEach(c => {
+        if (c.checked) checked++;
+        stateArray.push(c.checked);
+    });
+
+    // Simpan ke local storage berdasarkan course aktif
+    const urlParams = new URLSearchParams(window.location.search);
+    const course = urlParams.get('course') || 'html';
+    localStorage.setItem(`portfolio_progress_${course}`, JSON.stringify(stateArray));
+
+    const percent = Math.round((checked / total) * 100);
+    const bar = document.getElementById('bar');
+
+    bar.style.width = percent + '%';
+    bar.innerText = percent + '%';
+
+    if (percent === 100) {
+        bar.classList.add('completed');
+        bar.innerText = '100% 🎉';
+    } else {
+        bar.classList.remove('completed');
+    }
+}
+
+// Memuat data secara dinamis berdasarkan URL Parameter
+document.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const course = urlParams.get('course') || 'html'; // default ke HTML jika URL kosong
+
+    const portfolioData = {
+        html: {
+            header: "📘 HTML Course Tracker",
+            desc: "HTML adalah dasar pengembangan website. Fokus pada struktur dan semantic markup.",
+            materi: ["Dasar HTML", "Semantic HTML", "Form & Input", "Table", "Link & Image"]
+        },
+        css: {
+            header: "🎨 CSS Course Tracker",
+            desc: "CSS digunakan untuk mendesain halaman web. Fokus pada layouting, warna, dan responsivitas.",
+            materi: ["Dasar CSS & Selektor", "Box Model", "Flexbox", "CSS Grid", "Responsive & Media Queries"]
+        },
+        js: {
+            header: "⚡ JavaScript Course Tracker",
+            desc: "JavaScript memberikan interaktivitas pada website. Fokus pada logika pemrograman dan manipulasi DOM.",
+            materi: ["Variabel & Tipe Data", "Fungsi & Scope", "Manipulasi DOM", "Event Listener", "Fetch API (Asynchronous)"]
+        }
+    };
+
+    const data = portfolioData[course];
+    if (data) {
+        document.getElementById('portfolio-header').innerText = data.header;
+        document.getElementById('desc').innerText = data.desc;
+        const list = document.getElementById('materi-list');
+        list.innerHTML = data.materi.map(item => `<li><input type="checkbox" onclick="updateProgress()"> ${item}</li>`).join('');
+
+        // Memuat progress dari Local Storage
+        const savedProgress = JSON.parse(localStorage.getItem(`portfolio_progress_${course}`)) || [];
+        const checks = document.querySelectorAll('input[type="checkbox"]');
+        checks.forEach((c, index) => {
+            if (savedProgress[index]) {
+                c.checked = true;
+            }
+        });
+        updateProgress(); // Inisialisasi progress bar saat halaman dimuat
+    }
+});
+</script>
+
+</body>
+</html>

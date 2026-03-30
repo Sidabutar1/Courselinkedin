@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Course HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 10px;
+            width: 60%;
+            margin: auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        button {
+            padding: 12px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #38bdf8;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0ea5e9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Course HTML</h1>
+    <p>Durasi: 2 jam 45 menit</p>
+    <p>Level: Beginner + Intermediate</p>
+    <p>Rilis: 27 Maret 2023</p>
+
+    <button onclick="showDescription()">Deskripsi Course</button>
+    <button onclick="showObjectives()">Learning Objectives</button>
+    <button onclick="showSkills()">Skills</button>
+</div>
+
+<script>
+    function showDescription() {
+        alert("HTML adalah dasar dari pengembangan website. " +
+        "Dalam kursus ini, Anda akan belajar membuat struktur HTML yang baik " +
+        "dengan fokus pada markup semantik agar dapat dipahami oleh manusia dan mesin.");
+    }
+
+    function showObjectives() {
+        alert(
+        "Learning Objectives:\n\n" +
+        "- Sintaks dasar elemen HTML\n" +
+        "- Memformat konten\n" +
+        "- Menampilkan gambar\n" +
+        "- Membuat tautan\n" +
+        "- Atribut HTML global\n" +
+        "- Membangun navigasi\n" +
+        "- Struktur konten\n" +
+        "- Membuat form\n" +
+        "- Membuat tabel"
+        );
+    }
+
+    function showSkills() {
+        alert("Skills Covered:\n\n- HTML");
+    }
+</script>
+
+</body>
+</html>
